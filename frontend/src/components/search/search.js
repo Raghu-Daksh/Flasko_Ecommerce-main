@@ -8,6 +8,8 @@ const SearchPage = () => {
   const { key } = useParams();
   const dispatch = useDispatch();
   const searchResults = useSelector((state) => state.searchProductReducer);
+  console.log(searchResults);
+  
 
   useEffect(() => {
     dispatch(SearchProductsAction(key));
