@@ -1,0 +1,75 @@
+/* Sidebar container */
+.sidebar {
+  width: 100%;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+/* Section title */
+.filter h5 {
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 14px;
+  color: #1e293b;
+  text-transform: uppercase;
+}
+
+/* Category list */
+.category-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.selected-category {
+  padding: 8px 12px;
+  background: #0000001f;
+  border-radius: 6px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.25s ease;
+  color: #1f2937;
+}
+.active-category {
+  background: #000 !important;
+  color: #fff !important;
+}
+
+.selected-category:hover {
+  background: #000000;
+  color: #fff;
+}
+
+/* Company dropdown */
+.category-company-list select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #cbd5e1;
+  font-size: 15px;
+  cursor: pointer;
+  outline: none;
+  transition: 0.25s ease;
+}
+
+.category-company-list select:hover {
+  border-color: #000000;
+  color: white;
+}
+
+/* Price slider */
+.price-range p {
+  font-weight: 600;
+  color: #111827;
+}
+
+.price-range input[type="range"] {
+  width: 100%;
+  accent-color: #000000;
+  cursor: pointer;
+}

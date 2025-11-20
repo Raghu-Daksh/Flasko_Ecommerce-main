@@ -1,0 +1,9 @@
+.App {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: rgb(200, 203, 206);
+}
+.wrapper{
+  margin-top: 95px;
+}

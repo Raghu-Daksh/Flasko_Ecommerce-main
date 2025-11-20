@@ -1,0 +1,110 @@
+/* MAIN WRAPPER */
+.category-slider-wrapper {
+  position: relative;
+  width: 100%;
+  padding: 20px 0;
+}
+
+/* SCROLL AREA */
+.categorys {
+  display: flex;
+  gap: 18px;
+  padding: 20px 30px;
+  overflow-x: auto;
+  cursor: grab;
+  scroll-behavior: smooth;
+  white-space: nowrap;
+}
+
+/* Hide scrollbar */
+.categorys::-webkit-scrollbar {
+  display: none;
+}
+
+/* Drag active state */
+.categorys.active-drag {
+  cursor: grabbing;
+  cursor: -webkit-grabbing;
+}
+
+/* CATEGORY CARD */
+.category {
+  min-width: 125px;
+  background: #fff;
+  border-radius: 14px;
+  padding: 18px 14px;
+  text-align: center;
+  cursor: pointer;
+
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  transition: all 0.25s ease;
+}
+
+.category:hover {
+  transform: translateY(-5px) scale(1.07);
+}
+
+/* CATEGORY IMG */
+.category img {
+  width: 65px;
+  height: 65px;
+  object-fit: contain;
+  margin-bottom: 10px;
+  transition: 0.25s;
+}
+
+.category:hover img {
+  transform: scale(1.1);
+}
+
+/* TEXT */
+.category p {
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+}
+
+/* SLIDER BUTTONS */
+.slider-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+
+  background: white;
+  border: none;
+  border-radius: 50%;
+  width: 46px;
+  height: 46px;
+  font-size: 20px;
+  color: #333;
+
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  transition: 0.2s;
+  z-index: 10;
+}
+
+.slider-btn:hover {
+  transform: translateY(-50%) scale(1.15);
+}
+
+.slider-btn.left {
+  left: 10px;
+}
+
+.slider-btn.right {
+  right: 10px;
+}
+
+/* MOBILE */
+@media (max-width: 600px) {
+  .slider-btn {
+    width: 38px;
+    height: 38px;
+    font-size: 16px;
+  }
+  .category {
+    min-width: 110px;
+  }
+}

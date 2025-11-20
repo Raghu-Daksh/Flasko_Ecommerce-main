@@ -1,0 +1,50 @@
+.about-section{
+    width: 95%;
+   margin: 0 auto;
+}
+.about-title{
+    width: 100%;
+    background-image: url('https://images.pexels.com/photos/404280/pexels-photo-404280.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    color: #fff;
+    height: 400px;
+}
+.about-title h1{
+    font-size: 5rem;
+}
+.row-1{
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+    gap: 30px;
+}
+.our-team-sec{
+    font-size: 15px;
+   text-align: justify;
+}
+.team-member{
+    background-color: rgb(0, 0, 0);
+    padding: 10px;
+    text-align: center;
+    color: white;
+    border-radius: 15px;
+
+}
+.team-member-sec{
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+.team-member img{
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 15px;
+}
+.row-2{
+    text-align: center;
+    margin: 20px 0;
+}

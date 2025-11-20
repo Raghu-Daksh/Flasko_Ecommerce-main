@@ -1,0 +1,33 @@
+
+.home{
+    padding: 50px;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(250px, 1fr));
+  gap: 22px;
+} 
+
+.card .product-img img{ 
+    object-fit: cover;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+}
+.card:hover{ 
+   transform: scale(1.05);
+}
+.card{
+    transition: all 0.5s ease-in;
+    box-shadow: 0 0 10px rgb(255, 255, 255);
+    height: 300px;
+    cursor: pointer;
+    position: relative;
+    padding: 15px;
+    border-radius: 20px;
+}
+.product-details{
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
+}
+.product-details-rating span ion-icon{
+    color: rgb(15, 32, 182);
+}

@@ -1,0 +1,43 @@
+.cart{
+    background-color: rgb(194, 197, 201);
+}
+.mycart{
+    background-color: white;
+    border-bottom: 1px solid #f0f0f0f0;
+    padding: 10px 0 0 15px;
+    font-weight: 500;
+    border: 1px solid  #fefefe;
+    min-width: 400px;
+}
+.cartInput{
+    display: grid;
+    margin-top: 2px;
+    grid-template-columns: 20% 27% 20%;
+}
+.cartInput input{
+    border: none;
+    outline: none;
+    text-align: center;
+}
+.cartInput button{
+    border: none;
+    background-color: black;
+    color: white;
+}
+.cartInput :nth-child(1){
+   border-top-left-radius: 15px;
+   border-bottom-left-radius: 15px;
+}
+.cartInput :nth-child(3){
+   border-top-right-radius: 15px;
+   border-bottom-right-radius: 15px;
+}
+.cartInput button:hover{
+    background-color: rgb(30, 223, 78);
+}
+
+@media screen and (max-width: 720px) {
+    .cart{
+        padding: 20px 10px !important;
+    }
+}

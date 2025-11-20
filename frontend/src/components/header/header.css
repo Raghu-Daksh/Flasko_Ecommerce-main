@@ -1,0 +1,153 @@
+@import url('https://fonts.googleapis.com/css2?family=Courgette&family=Roboto:ital,wght@1,400;1,900&display=swap');
+
+*{
+    box-sizing: border-box;
+}
+.hamburger{
+    display: none;
+}
+
+.header{
+    display: flex;
+    height: 80px;
+    background: black;
+    color: rgb(255, 255, 255);
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem; 
+    width: 100%;
+    gap: 20px;
+    z-index: 2000;
+    position: fixed;
+}
+.logo{
+    flex: 10%;
+    display: flex;
+    justify-content: center;
+}
+.logo-icon{
+    color: white;
+     border: 1px solid white;
+     padding: 2px 5px;
+     border-radius: 6px;
+    text-decoration: none;
+    font-size: 1.4rem;
+    font-weight: bold;
+    font-family: 'Courgette', cursive;
+}
+.search-bar{
+    flex: 40%;
+    display: flex;
+    justify-content: center;
+    position: relative;
+
+}
+.search-bar input{
+    width: 100%;
+    padding: 0.5rem ;
+}
+/* .search-icon{
+    background-color: black;
+    border: 2px solid rgb(255, 255, 255);
+    height: 100%;
+}
+.search-icon ion-icon{
+    color: white !important ;
+} */
+
+.search-bar .search-icon {
+   /* background-color: green; */
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   padding: 0 5px;
+   position: absolute;
+   right: 0;
+}
+.search-bar .search-icon ion-icon{
+   font-size: 1.6rem;
+   color: black;
+   margin-top: 6px;
+   cursor: pointer;
+}
+.user, .closeUser{
+    flex: 40%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.nav-list {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.user-account{
+    display: flex;
+    justify-content: flex-end;
+    /* margin-left: 20px;    */
+}
+.shopping-cart{
+    display: flex;
+    justify-content: flex-end;
+    position: relative;
+    margin-right: 30px;
+}
+.shopping-cart ion-icon{
+    font-size: 2rem;
+    text-decoration: none;
+    color: white;
+}
+
+.shopping-cart span{
+    font-size: 1rem;
+    margin-top: 10px;
+    text-decoration: none;
+    color: white;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.login-btn{
+    text-decoration: none;
+    color: black;
+    background-color: white;
+    padding: 5px 1.6rem;
+    font-weight: 500;
+    cursor: pointer;
+}
+.login form .or{
+    text-align: center;
+    font-size: 1.2rem;
+    margin-top: 20px;
+}
+@media screen and (max-width: 920px) {
+    .hamburger{
+        display: block ;
+        cursor: pointer;
+    }
+    .user{
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        padding: 50px;
+        position: fixed  ;
+        gap: 20px;
+        top: 80px;  
+        left: 0;
+        background-color: black;
+        width: 300px;
+        height: 100vh;
+       transform: translateX(0); 
+       transition: all 0.5s ease-in;
+    }
+    .closeUser{
+        transform: translateX(-100%);
+        display: none;
+        transition: all 0.5s ease-in;
+    }
+    .logo{
+        margin-left: 20px;
+        margin-right: 20px;
+        display: absolute;
+        left: 110px;
+        display: none;
+    }
+}

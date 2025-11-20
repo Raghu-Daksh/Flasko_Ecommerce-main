@@ -1,0 +1,111 @@
+/* ============================
+   PRODUCT PAGE LAYOUT
+============================ */
+.product-sec {
+  width: 100%;
+  padding: 30px 4%;
+  display: flex;
+  flex-direction: column;
+  gap: 35px;
+  background: #f9fafb;
+}
+
+/* Layout: Sidebar + Product List */
+.products {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  gap: 28px;
+}
+
+/* Sidebar */
+.sideBar {
+  width: 260px;
+}
+
+/* Product list area */
+.product-list {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+/* Sorting bar */
+.sorting {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.sortings {
+  padding: 10px 14px;
+  border-radius: 8px;
+  background: #fff;
+  border: 1px solid #d1d5db;
+  outline: none;
+  cursor: pointer;
+  font-size: 15px;
+  transition: 0.25s ease;
+}
+
+.sortings:hover {
+  border-color: #2563eb;
+}
+
+/* Product Grid */
+.productsList {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(250px, 1fr));
+  gap: 22px;
+}
+
+
+/* Pagination */
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  padding-bottom: 30px;
+}
+
+.pagination button {
+  padding: 8px 16px;
+  border-radius: 6px;
+  border: 1px solid #cbd5e1;
+  background: #ffffff;
+  cursor: pointer;
+  transition: 0.25s;
+  font-size: 15px;
+}
+
+.pagination button:hover {
+  background: #2563eb;
+  color: #fff;
+  border-color: #2563eb;
+}
+
+
+/* ============================
+ Responsive
+============================ */
+@media (max-width: 1200px) {
+  .productsList {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 780px) {
+  .products {
+    flex-direction: column;
+  }
+
+  .sideBar {
+    width: 100%;
+  }
+}
+
+@media (max-width: 550px) {
+  .productsList {
+    grid-template-columns: 1fr;
+  }
+}

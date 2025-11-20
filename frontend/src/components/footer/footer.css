@@ -1,0 +1,58 @@
+/* =============================
+   FOOTER MAIN WRAPPER
+============================= */
+.footer {
+  width: 100%;
+  background: #0f172a; /* dark navy */
+  color: #d1d5db;
+  padding: 50px 10%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+}
+
+/* =============================
+   COLUMN STYLES
+============================= */
+.row-footer h5 {
+  color: #f8fafc;
+  margin-bottom: 18px;
+  font-size: 18px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.row-footer p {
+  margin: 8px 0;
+  font-size: 15px;
+  cursor: pointer;
+  opacity: 0.85;
+  transition: 0.3s ease;
+}
+
+.row-footer p:hover {
+  opacity: 1;
+  color: #60a5fa;
+  transform: translateX(4px);
+}
+
+/* =============================
+   RESPONSIVE
+============================= */
+@media (max-width: 850px) {
+  .footer {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 40px 7%;
+  }
+}
+
+@media (max-width: 600px) {
+  .footer {
+    grid-template-columns: 1fr;
+    padding: 35px 7%;
+  }
+
+  .row-footer {
+    margin-bottom: 25px;
+  }
+}

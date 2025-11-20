@@ -1,0 +1,149 @@
+/* ===========================
+   PRODUCT DETAILS MAIN LAYOUT
+=========================== */
+.product-details {
+  display: flex;
+  gap: 45px;
+  padding: 40px 6%;
+  background: #f9fafb;
+}
+
+/* LEFT SIDE (Images + Buttons) */
+.product-details-row-1 {
+  width: 38%;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  position: sticky;
+  top: 100px;
+}
+
+/* CAROUSEL IMAGE AREA */
+.product-details-row-1-images {
+  width: 100%;
+  background: #fff;
+  padding: 18px;
+  border-radius: 10px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+}
+
+.product-details-row-1-image {
+  width: 100%;
+  height: 350px;
+  object-fit: contain;
+}
+
+/* CTA BUTTONS */
+.product-details-row-1-btns {
+  display: flex;
+  gap: 15px;
+  width: 100%;
+}
+
+.product-details-row-1-btn {
+  flex: 1;
+  padding: 14px 0;
+  font-size: 17px;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  border: none;
+  transition: 0.3s;
+}
+
+.add-to-cart-btn {
+ background: #ffffff;
+  border: 1px solid #000;
+  color: #000;
+}
+
+.add-to-cart-btn:hover {
+ background: #000; color: #fff;
+}
+
+.buy-now-btn {
+    background: #000000;
+  color: white;
+}
+
+.buy-now-btn:hover {
+  background: #ffffff;
+  color: black;
+  border: 1px solid black;
+}
+
+/* ===========================
+   RIGHT SIDE DETAILS
+=========================== */
+.product-details-row-2 {
+  flex: 1;
+  background: #fff;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+}
+
+.product-details-row-2 h1 {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: #111827;
+}
+
+/* RATING BADGE */
+.ratings {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+  padding: 6px 10px;
+  background: #22c55e22;
+  color: #16a34a;
+  font-weight: 600;
+  border-radius: 6px;
+  font-size: 15px;
+}
+
+/* PRICE BLOCK */
+.product-details-price {
+  margin-top: 18px;
+  font-size: 26px;
+  font-weight: 800;
+  color: #111827;
+}
+
+.product-details-discount {
+  font-size: 16px;
+  font-weight: 600;
+  color: #16a34a;
+}
+
+/* DESCRIPTION TITLE */
+.product-details-row-2 p:first-child {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+/* MAIN DESCRIPTION CONTENT */
+.product-details-description {
+  margin-top: 15px;
+  font-size: 15px;
+  color: #374151;
+  line-height: 1.6;
+  text-align: justify;
+}
+
+/* ===========================
+ RESPONSIVE
+=========================== */
+@media (max-width: 1000px) {
+  .product-details {
+    flex-direction: column;
+  }
+  .product-details-row-1 {
+    width: 100%;
+    position: relative;
+    top: 0;
+  }
+}
