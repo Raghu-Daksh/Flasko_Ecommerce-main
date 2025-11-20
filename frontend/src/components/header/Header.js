@@ -22,7 +22,6 @@ const Header = ()=>{
     let productListCart = JSON.parse(localStorage.getItem('cartItems'));
     const cartItems = useSelector(state => state.addToCartReducer.data);
     const userDetails = JSON.parse(localStorage.getItem('user'))
-    console.log(productListCart.length);
     
 
     const closeHandle = ()=>{
