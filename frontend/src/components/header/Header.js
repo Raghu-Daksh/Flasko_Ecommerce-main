@@ -96,7 +96,7 @@ const Header = ()=>{
             <Link to='/cart'>
                     <div className="shopping-cart">
                         <ion-icon name="cart-outline"></ion-icon>
-                        <span style={{textDecoration:'none'}}>{productListCart.length > 0 ? productListCart.length : cartItems?.length}</span>
+                        <span style={{textDecoration:'none'}}>{productListCart&& productListCart?.length > 0 ? productListCart?.length : cartItems?.length}</span>
                     </div>  
                 </Link> 
         </header>
