@@ -1,5 +1,5 @@
 
-export const backendApi = 'http://localhost:5500';
+export const backendApi = 'https://flasko-ecommerce-main-backend.onrender.com';
 
 function isDate(val) {
     // Cross realm comptatible
