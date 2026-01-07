@@ -1,4 +1,6 @@
 import React from "react";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 import "./card.css";
 import { Link } from "react-router-dom";
 
@@ -14,12 +16,12 @@ const Card = ({ item }) => {
 
         {/* IMAGE */}
         <div className="amazon-card-image">
-          <img src={item?.thumbnail} alt={item.brand} />
+          <LazyLoadImage width= '100%' height='180px' effect="blur" src={item?.thumbnail} alt={item.brand}/>
         </div>
 
         {/* TITLE */}
         <h4 className="amazon-card-title">
-          {item.brand.length >= 15 ? item.brand.slice(0, 15) + "..." : item.brand}
+          {item.brand?.length >= 15 ? item.brand.slice(0, 15) + "..." : item.brand}
         </h4>
 
         {/* RATING */}

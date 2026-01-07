@@ -59,7 +59,7 @@
 
 .category-company-list select:hover {
   border-color: #000000;
-  color: white;
+  /* color: white; */
 }
 
 /* Price slider */

@@ -1,10 +1,14 @@
 import { useDispatch } from "react-redux";
 import { addToCartAction } from "../../redux/action/cartAction";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { payUsingPaytm } from "../../service/api";
 import { backendApi, post } from "../../utils/paytm";
 import { useEffect } from "react";
+import { addItem } from "../../slices/cartSlice";
+import { handleBuyNow, loadRazorpayScript } from "../../utils/razorePayScript";
 
 const ActionItem = ({ product }) => {
   const dispatch = useDispatch();
@@ -27,69 +31,10 @@ const ActionItem = ({ product }) => {
     },
   };
 
-function loadRazorpayScript() {
-  return new Promise((resolve) => {
-    const script = document.createElement("script");
-    script.src = "https://checkout.razorpay.com/v1/checkout.js";
-
-    script.onload = () => resolve(true);
-    script.onerror = () => resolve(false);
-
-    document.body.appendChild(script);
-  });
-}
-
-
-  const handleBuyNow = async (amount) => {
-
-  // 1. Load Razorpay script
-  const res = await loadRazorpayScript();
-  if (!res) {
-    alert("Payment SDK failed to load!");
-    return;
+  const addtoCartItemHandler = ()=>{
+      dispatch(addItem(product))
   }
 
-  // 2. Create order from backend
-  const orderResponse = await fetch(`${backendApi}/api/payment/create-order`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ amount }),
-  });
-  const order = await orderResponse.json();
-
-  // 3. Razorpay payment options
-  const options = {
-    key: "rzp_test_Rhc7KDFTLLV3f9", // frontend key_id
-    amount: order.order.amount,
-    currency: "INR",
-    name: "Flasko Store",
-    description: "Order Payment",
-    order_id: order.order.id,
-
-    handler: async function (response) {
-      // send details to backend for verification
-      const verify = await fetch(`${backendApi}/api/payment/verify-payment`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(response),
-      });
-
-      const result = await verify.json();
-      if (result.success) {
-        alert("Payment Successful!");
-      } else {
-        alert("Payment Verification Failed!");
-      }
-    },
-
-    theme: {
-      color: "#000000",
-    }
-  };
-
-  const paymentObj = new window.Razorpay(options);
-  paymentObj.open();
-};
 
 
   return (
@@ -108,7 +53,7 @@ function loadRazorpayScript() {
           itemClass="carousel-item-padding-40-px"
         > 
           {images?.map((img) => (
-            <img
+            <LazyLoadImage effect = "blur"
               src={img}
               alt="product-image"
               className="product-details-row-1-image"
@@ -120,7 +65,7 @@ function loadRazorpayScript() {
         
         <button
           className="product-details-row-1-btn add-to-cart-btn"
-          onClick={() => dispatch(addToCartAction(product._id, 1))}
+          onClick={addtoCartItemHandler}
         >
           Add to cart
         </button>

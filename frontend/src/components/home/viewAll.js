@@ -1,4 +1,6 @@
 import React, { useEffect } from "react";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 import { useDispatch, useSelector } from "react-redux";
 import { productListAction } from "../../redux/action/productAction";
 import { Link } from "react-router-dom";
@@ -21,7 +23,7 @@ const ViewAll = () => {
           key={product._id}
         >
           <div className="viewall-img-box">
-            <img src={product.thumbnail} alt={product.title} />
+            <LazyLoadImage effect = "blur" src={product.thumbnail} alt={product.title} />
           </div>
 
           <div className="viewall-info">

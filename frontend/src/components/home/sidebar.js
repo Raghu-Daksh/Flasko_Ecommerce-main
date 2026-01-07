@@ -2,36 +2,33 @@ import React, { useEffect, useState } from "react";
 import { category } from "../../data/data";
 import "./sidebar.css";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  getFilterData,
-  productListAction,
-} from "../../redux/action/productAction";
+import { fetchProducts, filteredProducts } from "../../slices/productSlice";
 
-const SideBar = () => {
+const SideBar = ({setCurrentFilter}) => {
   const dispatch = useDispatch();
-  const [categoryFilter, setCategoryFilter] = useState();
-  const { products } = useSelector((state) => state.displayProductsReducer);
+  const [categoryFilter, setCategoryFilter] = useState('All');
+  const [pricecategoryFilter, setPriceCategoryFilter] = useState();
 
-  let priceArr = [];
+  const { productsData:products } = useSelector((state) => state.products);
+
   let companyArr = ["All"];
-  products.map((item) => {
-    priceArr.push(item.price);
+  products.map((item) => {   
     companyArr.push(item.brand);
   });
 
-  let maxPrice = Math.max(...priceArr);
-  let minPrice = Math.min(...priceArr);
-
-  const [pricecategoryFilter, setPriceCategoryFilter] = useState();
-
   useEffect(() => {
-    if (categoryFilter) {
-      dispatch(getFilterData(categoryFilter));
+    if (categoryFilter){
+      dispatch(filteredProducts(categoryFilter));
+      setCurrentFilter(categoryFilter)
+      console.log(categoryFilter);
+      
     }
-    if (pricecategoryFilter) {
-      dispatch(getFilterData(pricecategoryFilter));
+    else if(pricecategoryFilter){
+      dispatch(filteredProducts(pricecategoryFilter));
+      setCurrentFilter(pricecategoryFilter)
+      console.log(pricecategoryFilter);
+      
     }
-    dispatch(productListAction());
   }, [dispatch, categoryFilter, pricecategoryFilter]);
 
   return (
@@ -69,8 +66,8 @@ const SideBar = () => {
         <p>₹ {pricecategoryFilter}</p>
         <input
           type="range"
-          min={minPrice}
-          max={maxPrice}
+          min={20}
+          max={10000}
           onChange={(e) => setPriceCategoryFilter(e.target.value)}
         />
       </div>

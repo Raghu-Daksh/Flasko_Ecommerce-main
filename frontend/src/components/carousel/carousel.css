@@ -1,16 +1,43 @@
-.carousel{
-    height: 30vh;
+--- carousel.css ---
+
+/* 1. Main Container Fix */
+.carousel {
+    height: 30vh; 
     margin: 20px auto 0;
-    box-shadow: 0 0 5px 5px rgba(128, 128, 128, 0.39);
+    overflow: hidden; 
+    position: relative;
+    border: 2px solid red; /* Debugging ke liye jo aapne lagaya tha */
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-.carousel-imgs{
+
+/* 3. Image Container */
+.carousel-imgs {
     width: 100%;
-    background-color: green;
-    height: 100%;
-    /* display: none; */
+    height: 30vh;
+    overflow: hidden;
+    display: flex; /* Flexbox zaroori hai extra space hatane ke liye */
+    justify-content: center;
+    align-items: center;
 }
-.carousel-imgs .carousel-img{
+.carousel-imgs span {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    display: block !important;
+}
+
+.carousel-imgs span.lazy-load-image-background {
+    width: 100%;
+    height: 30vh;
+    display: block !important; /* Default inline hota hai, block karein */
+}
+
+/* 5. Actual Image Styling */
+.carousel-imgs .carousel-img {
+    width: 100%;
+    height: 30vh;
+    object-fit: cover; /* Image ko crop karke fit karega bina stretch kiye */
+    display: block;
 }

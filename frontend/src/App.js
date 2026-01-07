@@ -1,43 +1,50 @@
-import { useEffect, useState } from 'react';
+import {lazy, Suspense} from 'react';
 import './App.css';
 
 import Footer from './components/footer/Footer';
 import Header from './components/header/Header';
-import {BrowserRouter, Route, Routes }  from 'react-router-dom'
+import {BrowserRouter, Outlet, Route, Routes }  from 'react-router-dom'
 import Home from './components/home/Home';
-import ProductDetails from './components/product_details/ProductDetails';
-import { useDispatch, useSelector } from 'react-redux';
-import { productListAction } from './redux/action/productAction';
-import SearchPage from './components/search/search';
-import Cart from './components/cart/cart';
-import EmptyCart from './components/cart/EmptyCart';
-import ViewAll from './components/home/viewAll';
-import AboutUs from './components/about/about';
-import Card from '../src/components/home/card'
-import Product from './components/ProductPage/product';
+import Loader from './components/Loader/Loader';
+
+const RegisterForm = lazy(()=>import('./components/RegisterForm/RegisterForm'))
+const LoginForm = lazy(()=>import('./components/LoginForm/LoginForm'))
+const SearchPage  = lazy(()=> import ( './components/search/search'))
+const ProductDetails  = lazy(()=> import ( './components/product_details/ProductDetails'))
+const Cart  = lazy(()=> import ( './components/cart/cart'))
+const ViewAll  = lazy(()=> import ( './components/home/viewAll'))
+const AboutUs  = lazy(()=> import ( './components/about/about'))
+const Product  = lazy(()=> import ( './components/ProductPage/product'));
+
 function App() {
-
-
   return (
       <BrowserRouter >
           <div className="App">
-            <div>
+               <div>
               <Header />
-             <div className='wrapper'>
-              <Routes >
-                <Route path='/' element={<Home/>} />
-                <Route path='/product_details/:_id' element={<ProductDetails />}  />
-                <Route path='/search/:key' element={<SearchPage />}  />
-                <Route path='/all' element={<ViewAll />}  />
-                <Route path='/cart' element={<Cart />}  />
-                <Route path='/products' element={<Product />}  />
-                <Route path='/about' element={<AboutUs />}  />
-              </Routes>
-              </div> 
-            </div>
-            <div>
-            <Footer />
-            </div>
+                  <div className='wrapper'>
+                <Routes >
+                  <Route path='/' element={<Home/>} />
+
+                  <Route element= {<Suspense fallback= {<Loader />} >
+                        <Outlet  />
+                    </Suspense>
+                  }>
+                    <Route path='/product_details/:_id' element={<ProductDetails />}  />
+                    <Route path='/search/:key' element={<SearchPage />}  />
+                    <Route path='/all' element={<ViewAll />}  />
+                    <Route path='/cart' element={<Cart />}  />
+                    <Route path='/products' element={<Product />}  />
+                    <Route path='/about' element={<AboutUs />}  />
+                    <Route path='/register' element={<RegisterForm />}  />
+                    <Route path='/login' element={<LoginForm />}  />
+                  </Route>
+                </Routes>
+                 </div> 
+              </div>
+
+               <Footer />
+
           </div>
       </BrowserRouter>
   );

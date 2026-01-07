@@ -4,18 +4,26 @@ const productRouter = require('./routes/productRoute');
 const userRouter = require('./routes/userRoutes');
 const paymentRoute = require("./routes/paymentRoute.js");
 const bodyParser = require('body-parser');
-const user = require('./db/user');
 const products = require('./db/product')
+
+const cookieParser = require('cookie-parser');
+const cors = require('cors');
+const { checkAuth } = require('./middleware/auth.js');
+
 
 require('dotenv').config();
 require('./db/config'); 
 
-const cors = require('cors');
-app.use(cors());
+app.use(cors({
+  origin: "http://localhost:3000",   // frontend origin
+  credentials: true                  // cookie allow
+}));
 
 app.use(express.json());
+app.use(cookieParser());
 
 app.use('/api/products', productRouter)
+
 app.use('/api', userRouter)
 app.use("/api/payment", paymentRoute);
 

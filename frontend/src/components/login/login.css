@@ -1,8 +1,8 @@
-.login-sec{
+/* .login-sec{
     display: flex;
     height: 70vh;
     width: 100%;
-}
+} */
 .login-side{
     flex: 50%;
     background-color: black;

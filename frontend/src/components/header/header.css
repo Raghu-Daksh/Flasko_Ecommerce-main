@@ -1,153 +1,197 @@
-@import url('https://fonts.googleapis.com/css2?family=Courgette&family=Roboto:ital,wght@1,400;1,900&display=swap');
-
-*{
-    box-sizing: border-box;
+/* RESET */
+* {
+  box-sizing: border-box;
 }
-.hamburger{
+
+/* HEADER */
+.header {
+  height: 72px;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* LEFT */
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* LOGO */
+.logo {
+  color: #fff;
+  font-size: 22px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+/* SEARCH */
+.search-bar {
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 30px;
+  padding: 6px 14px;
+  min-width: 260px;
+}
+
+.search-bar input {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #fff;
+  flex: 1;
+}
+
+.search-icon {
+  cursor: pointer;
+}
+
+/* HAMBURGER */
+.hamburger {
+  display: none;
+  cursor: pointer;
+  color: #fff;
+}
+
+/* RIGHT */
+.header-righte-section{
+  display: flex;
+  gap: 20px;
+}
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.header-right a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.header-right a.active {
+  text-decoration: underline;
+}
+
+/* PROFILE */
+
+.profile{
+  display: flex;
+  align-items: center;
+  /* background-color: green; */
+}
+
+.profile{
+  color: #fff;
+  cursor: pointer;
+}
+  .profile  ion-icon{
+     font-size: 26px;
+     box-shadow: 0 0 3px rgb(255, 255, 255);
+     padding: 7px;
+     border-radius: 50%;
+     
+  }
+/* LOGIN */
+.login-btn {
+  background: rgba(255, 255, 255, 0.25);
+  border: none;
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+/* CART */
+/* CART */
+.cart-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+/* ICON */
+.cart-btn ion-icon {
+  font-size: 26px;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.cart-btn:hover ion-icon {
+  transform: scale(1.1);
+  opacity: 0.9;
+}
+
+/* BADGE */
+.cart-badge {
+  position: absolute;
+  top: -6px;
+  right: -10px;
+  background: linear-gradient(135deg, #ff4d4f, #ff7875);
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 600;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+
+
+
+/* MOBILE */
+@media (max-width: 900px) {
+  .hamburger {
+    display: block;
+  }
+
+  .search-bar {
     display: none;
-}
+  }
 
-.header{
-    display: flex;
-    height: 80px;
-    background: black;
-    color: rgb(255, 255, 255);
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 1.5rem; 
+  .header-right {
+    position: absolute;
+    top: 72px;
+    right: 0;
     width: 100%;
-    gap: 20px;
-    z-index: 2000;
-    position: fixed;
-}
-.logo{
-    flex: 10%;
-    display: flex;
-    justify-content: center;
-}
-.logo-icon{
-    color: white;
-     border: 1px solid white;
-     padding: 2px 5px;
-     border-radius: 6px;
-    text-decoration: none;
-    font-size: 1.4rem;
-    font-weight: bold;
-    font-family: 'Courgette', cursive;
-}
-.search-bar{
-    flex: 40%;
-    display: flex;
-    justify-content: center;
-    position: relative;
+    background: #fff;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+    display: none;
+  }
 
-}
-.search-bar input{
-    width: 100%;
-    padding: 0.5rem ;
-}
-/* .search-icon{
-    background-color: black;
-    border: 2px solid rgb(255, 255, 255);
-    height: 100%;
-}
-.search-icon ion-icon{
-    color: white !important ;
-} */
+  .header-right.open {
+    display: flex;
+  }
 
-.search-bar .search-icon {
-   /* background-color: green; */
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   padding: 0 5px;
-   position: absolute;
-   right: 0;
-}
-.search-bar .search-icon ion-icon{
-   font-size: 1.6rem;
-   color: black;
-   margin-top: 6px;
-   cursor: pointer;
-}
-.user, .closeUser{
-    flex: 40%;
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-}
-.nav-list {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-}
-.user-account{
-    display: flex;
-    justify-content: flex-end;
-    /* margin-left: 20px;    */
-}
-.shopping-cart{
-    display: flex;
-    justify-content: flex-end;
-    position: relative;
-    margin-right: 30px;
-}
-.shopping-cart ion-icon{
-    font-size: 2rem;
-    text-decoration: none;
-    color: white;
-}
+  .header-right a,
+  .profile span {
+    color: #333;
+  }
 
-.shopping-cart span{
-    font-size: 1rem;
-    margin-top: 10px;
-    text-decoration: none;
-    color: white;
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  .login-btn {
+    background: #667eea;
+  }
 }
-.login-btn{
-    text-decoration: none;
-    color: black;
-    background-color: white;
-    padding: 5px 1.6rem;
-    font-weight: 500;
-    cursor: pointer;
-}
-.login form .or{
-    text-align: center;
-    font-size: 1.2rem;
-    margin-top: 20px;
-}
-@media screen and (max-width: 920px) {
-    .hamburger{
-        display: block ;
-        cursor: pointer;
-    }
-    .user{
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: flex-start;
-        padding: 50px;
-        position: fixed  ;
-        gap: 20px;
-        top: 80px;  
-        left: 0;
-        background-color: black;
-        width: 300px;
-        height: 100vh;
-       transform: translateX(0); 
-       transition: all 0.5s ease-in;
-    }
-    .closeUser{
-        transform: translateX(-100%);
-        display: none;
-        transition: all 0.5s ease-in;
-    }
-    .logo{
-        margin-left: 20px;
-        margin-right: 20px;
-        display: absolute;
-        left: 110px;
-        display: none;
-    }
+/* MOBILE TOUCH FRIENDLY */
+@media (max-width: 900px) {
+  .cart-btn ion-icon {
+    font-size: 28px;
+  }
 }

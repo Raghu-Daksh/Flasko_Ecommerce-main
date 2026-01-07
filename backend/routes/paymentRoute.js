@@ -1,15 +1,16 @@
-const express = require( "express");
-const Razorpay = require( "razorpay");
-const crypto = require( "crypto");
+const express = require("express");
+const Razorpay = require("razorpay");
+const crypto = require("crypto");
+const { checkAuth } = require("../middleware/auth");
 
 const router = express.Router();
 
 // Create order API
-router.post("/create-order", async (req, res) => {
+router.post("/create-order", checkAuth, async (req, res) => {
   try {
     console.log("req.", req.body);
     
-    console.log("secret key ",{
+    console.log("secret key",{
       key_id: process.env.RAZORPAY_KEY_ID,
       key_secret: process.env.RAZORPAY_KEY_SECRET,
     });

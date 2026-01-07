@@ -1,30 +1,31 @@
 import React, { useEffect } from "react";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 import "./search.css";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { SearchProductsAction } from "../../redux/action/productAction";
+import { searchProducts } from "../../slices/productSlice";
 
 const SearchPage = () => {
   const { key } = useParams();
   const dispatch = useDispatch();
-  const searchResults = useSelector((state) => state.searchProductReducer);
-  console.log(searchResults);
-  
-
+  const {productsData} = useSelector((state) => state.products);
+ 
   useEffect(() => {
-    dispatch(SearchProductsAction(key));
+    dispatch(searchProducts(key));
   }, [dispatch, key]);
 
   return (
     <div className="new-search-container">
-      {searchResults && searchResults[0]?.map((product) => (
+      {productsData && Array.isArray(productsData) ? productsData.map((product) => (
         <Link
           to={`/product_details/${product._id}`}
           className="new-search-card"
           key={product._id}
         >
           <div className="new-search-image">
-            <img src={product.thumbnail} alt={product.title} />
+            <LazyLoadImage loading="" src={product.thumbnail} alt={product.title} />
           </div>
 
           <div className="new-search-info">
@@ -44,7 +45,10 @@ const SearchPage = () => {
             </div>
           </div>
         </Link>
-      ))}
+      ))
+      :
+      <h1>{productsData}</h1>
+    }
     </div>
   );
 };

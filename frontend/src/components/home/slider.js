@@ -1,4 +1,6 @@
 import Carousel from "react-multi-carousel";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 import "react-multi-carousel/lib/styles.css";
 import React from "react";
 import './slide.css'
@@ -8,12 +10,12 @@ import Countdown from 'react-countdown';
 import { Link, useNavigate } from "react-router-dom";
 
 const Component = styled(Box)`
-margin-top: 20px;
-padding: 0 10px ;
-background: #fff;
-width:99%;
-margin: 10px auto;
-box-shadow: 0 0 2px black ;
+  margin-top: 20px;
+  padding: 0 10px ;
+  background: #fff;
+  width:99%;
+  margin: 10px auto;
+  box-shadow: 0 0 2px black ;
 `
 const Deal = styled(Box)`
 padding: 10px 5px;
@@ -44,7 +46,10 @@ const ViewButton = styled(Button)`
 const Image = styled('img')`
   max-width: 250px;
   max-height: 150px;
+  box-shadow: 0 0 2px black;
+  padding: 15px
 `
+
 const responsive = {
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
@@ -85,7 +90,7 @@ const Slide = ({products, title}) => {
         {
           title == 'Deal of the day' ?
           <CountDown>
-            <img width="15px" src={timerUrl} />
+            <LazyLoadImage effect = "blur" width="15px" src={timerUrl} />
             <Countdown date={Date.now() + 5.04e7} renderer={renderer} />,
           </CountDown> :
             ''
@@ -109,7 +114,7 @@ const Slide = ({products, title}) => {
           products ?
             products?.map((product,key) =>(
               <Link key={key} to={`/product_details/${product._id}`} style={{textDecoration: 'none'}} >
-                <Box style={{padding: '25px 15px', textAlign: 'center' }}>
+                <Box style={{padding: '25px 15px', textAlign: 'center'}}>
                   <Image src={product?.thumbnail} alt="product" className="slide-img" />
                   <Typography style={{fontWeight: 'bold', fontSize:'16px'  }} >{product?.title}</Typography>
                   <Typography style={{ fontSize:'14px'  }}  > <span style={{fontWeight: 'bold'}} >From</span> {product?.price}</Typography>

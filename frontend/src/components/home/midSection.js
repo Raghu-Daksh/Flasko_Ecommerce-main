@@ -7,7 +7,7 @@ const  MidSection = ()=>{
             {
                 imageURL.map((image,key)=>(
                     <Grid key={key} item lg={4} sm={4} md={12} xs={12}>
-                        <img style={{width:"100%"}} src={image} />
+                        <LazyLoadImage effect = "blur" style={{width:"100%"}} src={image} />
                     </Grid>
                 ))
             }

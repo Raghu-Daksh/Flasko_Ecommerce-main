@@ -1,5 +1,8 @@
 import React from 'react';
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 import './about.css';
+
 
 const AboutUs = () => {
   return (
@@ -21,30 +24,30 @@ const AboutUs = () => {
             </p>
             </div>
             <div className='right-sec'>
-                <img src='https://images.pexels.com/photos/1595385/pexels-photo-1595385.jpeg?auto=compress&cs=tinysrgb&w=600' />
+                <LazyLoadImage loading='lazy' src='https://images.pexels.com/photos/1595385/pexels-photo-1595385.jpeg?auto=compress&cs=tinysrgb&w=600' />
             </div>
         </div>
         <div className='row-2'>
             <h1>Our Team Members</h1>
           <div className='team-member-sec'>
             <div className='team-member'>
-                <img src='https://images.pexels.com/photos/3501159/pexels-photo-3501159.jpeg?auto=compress&cs=tinysrgb&w=600' />
+                <LazyLoadImage loading='lazy' src='https://images.pexels.com/photos/3501159/pexels-photo-3501159.jpeg?auto=compress&cs=tinysrgb&w=600' />
                 <h3>Harry</h3>
             </div>
             <div className='team-member'>
-                <img src='https://images.pexels.com/photos/936043/pexels-photo-936043.jpeg?auto=compress&cs=tinysrgb&w=600' />
+                <LazyLoadImage loading='lazy' src='https://images.pexels.com/photos/936043/pexels-photo-936043.jpeg?auto=compress&cs=tinysrgb&w=600' />
                 <h3>Josep</h3>
             </div>
             <div className='team-member'>
-                <img src='https://images.pexels.com/photos/4342400/pexels-photo-4342400.jpeg?auto=compress&cs=tinysrgb&w=600'/>
+                <LazyLoadImage loading='lazy' src='https://images.pexels.com/photos/4342400/pexels-photo-4342400.jpeg?auto=compress&cs=tinysrgb&w=600'/>
                 <h3>Rahul Kuswaha</h3>
             </div>
             <div className='team-member'>
-                <img src='https://images.pexels.com/photos/4195342/pexels-photo-4195342.jpeg?auto=compress&cs=tinysrgb&w=600'/>
+                <LazyLoadImage loading='lazy' src='https://images.pexels.com/photos/4195342/pexels-photo-4195342.jpeg?auto=compress&cs=tinysrgb&w=600'/>
                 <h3>Raghu Daksh</h3>
             </div>
             <div className='team-member'>
-                <img src='https://images.pexels.com/photos/5717546/pexels-photo-5717546.jpeg?auto=compress&cs=tinysrgb&w=600'/>
+                <LazyLoadImage loading='lazy' src='https://images.pexels.com/photos/5717546/pexels-photo-5717546.jpeg?auto=compress&cs=tinysrgb&w=600'/>
                 <h3>Natasha Garg</h3>
             </div>
         </div>  

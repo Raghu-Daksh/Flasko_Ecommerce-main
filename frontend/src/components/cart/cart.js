@@ -5,8 +5,9 @@ import CartItem from "./CartItem";
 import './cart.css'
 import TotalAmount from "./totalAmount";
 import EmptyCart from "./EmptyCart";
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import { backendApi } from "../../utils/paytm";
+import { handleBuyNow, loadRazorpayScript } from "../../utils/razorePayScript";
 
 const Container = styled(Grid)`
     padding: 20px 135px ;
@@ -37,75 +38,11 @@ const StyledButton = styled(Button)`
 `;
 const Cart = ()=>{
 
-    const product = useSelector(state=>state.addToCartReducer);
-    let productListCart = JSON.parse(localStorage.getItem('cartItems'));
+    const {cartItems: productListCart} = useSelector(state=>state.cart);
 
-    const totalAmt = productListCart.reduce((acc, item) => acc + item.quantity * item.price, 0) + 40
-    console.log(totalAmt);
-    
-    function loadRazorpayScript() {
-  return new Promise((resolve) => {
-    const script = document.createElement("script");
-    script.src = "https://checkout.razorpay.com/v1/checkout.js";
-
-    script.onload = () => resolve(true);
-    script.onerror = () => resolve(false);
-
-    document.body.appendChild(script);
-  });
-}
+    const totalAmt = useMemo( ()=> productListCart.reduce((acc, item) => acc + item.quantity * item.price, 0) + 40, [productListCart])
 
 
-  const handleBuyNow = async (amount) => {
-
-  // 1. Load Razorpay script
-  const res = await loadRazorpayScript();
-  if (!res) {
-    alert("Payment SDK failed to load!");
-    return;
-  }
-
-  // 2. Create order from backend
-  const orderResponse = await fetch(`${backendApi}/api/payment/create-order`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ amount }),
-  });
-  const order = await orderResponse.json();
-
-  // 3. Razorpay payment options
-  const options = {
-    key: "rzp_test_Rhc7KDFTLLV3f9", // frontend key_id
-    amount: order.order.amount,
-    currency: "INR",
-    name: "Flasko Store",
-    description: "Order Payment",
-    order_id: order.order.id,
-
-    handler: async function (response) {
-      // send details to backend for verification
-      const verify = await fetch(`${backendApi}/api/payment/verify-payment`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(response),
-      });
-
-      const result = await verify.json();
-      if (result.success) {
-        alert("Payment Successful!");
-      } else {
-        alert("Payment Verification Failed!");
-      }
-    },
-
-    theme: {
-      color: "#000000",
-    }
-  };
-
-  const paymentObj = new window.Razorpay(options);
-  paymentObj.open();
-};
  
     return (
         <>

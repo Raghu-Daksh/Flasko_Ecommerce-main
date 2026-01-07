@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { Box, Typography } from "@mui/material";
 import { useDispatch } from "react-redux";
-import { addToCartAction, removeToCartAction } from "../../redux/action/cartAction";
+import { addItem, decQty,removeItem } from "../../slices/cartSlice";
 
 const CartContainer = styled(Box)`
   display: flex;
@@ -106,32 +106,18 @@ const RemoveBtn = styled(Typography)`
 const CartItem = ({ item }) => {
   const dispatch = useDispatch();
 
-  const removeItem = () => {
-    dispatch(removeToCartAction(item.product));
-  };
-
-  const increaseQty = () => {
-    dispatch(addToCartAction(item.product, item.quantity + 1));
-  };
-
-  const decreaseQty = () => {
-    if (item.quantity > 1) {
-      dispatch(addToCartAction(item.product, item.quantity - 1));
-    }
-  };
-
   return (
     <CartContainer>
       {/* LEFT IMAGE + QTY */}
       <LeftSection>
-        <ProductImage src={item.image} alt="cart-product" />
+        <ProductImage src={item?.thumbnail} alt="cart-product" />
 
         <QtyController>
-          <button onClick={decreaseQty}>−</button>
-          <input readOnly value={item.quantity} />
-          <button onClick={increaseQty}>+</button>
+          <button onClick={()=>dispatch(decQty(item))}>−</button>
+            <input readOnly value={item.quantity} />
+          <button onClick={()=>dispatch(addItem(item))}>+</button>
         </QtyController>
-      </LeftSection>
+      </LeftSection>  
 
       {/* RIGHT DETAILS */}
       <RightSection>
@@ -143,7 +129,7 @@ const CartItem = ({ item }) => {
 
         <Price>₹{item.price}</Price>
 
-        <RemoveBtn onClick={removeItem}>Remove</RemoveBtn>
+        <RemoveBtn onClick={()=>dispatch(removeItem(item))}>Remove</RemoveBtn>
       </RightSection>
     </CartContainer>
   );

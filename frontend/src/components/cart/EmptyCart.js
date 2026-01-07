@@ -1,4 +1,6 @@
 import styled from "@emotion/styled";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 import { Box, Container, Typography } from "@mui/material";
 
 const Component = styled(Box)`
@@ -19,7 +21,7 @@ const EmptyCart = ()=>{
     return (
       <Component>
         <Main>
-            <img src={imgurl} alt ="img" style={{width: '15%'}} />
+            <LazyLoadImage effect = "blur" src={imgurl} alt ="img" style={{width: '15%'}} />
             <Typography>Your cart is empty</Typography>
         </Main>
       </Component>  
