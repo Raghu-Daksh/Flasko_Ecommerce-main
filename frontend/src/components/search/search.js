@@ -11,7 +11,7 @@ const SearchPage = () => {
   const { key } = useParams();
   const dispatch = useDispatch();
   const {productsData} = useSelector((state) => state.products);
- 
+  
   useEffect(() => {
     dispatch(searchProducts(key));
   }, [dispatch, key]);

@@ -3,7 +3,7 @@
   flex-direction: column;
   justify-content: space-between;
   height: 100vh;
-  background-color: rgb(200, 203, 206);
+  /* background-color: rgb(200, 203, 206); */
 }
 .wrapper{
   /* margin-top: 95px; */

@@ -79,11 +79,15 @@
 }
 
 .pagination button:hover {
-  background: #2563eb;
+  background: #6a6a6a;
   color: #fff;
-  border-color: #2563eb;
+  border-color: #6a6a6a;
 }
-
+.paginationBtn.activePage{
+  background: #000;
+  color: #fff;
+  border-color: #000;
+}
 
 /* ============================
  Responsive

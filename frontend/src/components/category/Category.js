@@ -4,11 +4,13 @@ import "react-lazy-load-image-component/src/effects/blur.css";
 import "./category.css";
 import { navData } from "../../data/data";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setProductFilter } from "../../slices/productSlice";
 
 const Category = () => {
   const navigate = useNavigate();
   const sliderRef = useRef(null);
-
+  const dispatch = useDispatch()
   // Drag variables
   const isDown = useRef(false);
   const startX = useRef(0);
@@ -20,7 +22,8 @@ const Category = () => {
     if (isDragging.current) {
         return;
     }
-    navigate(`/search/${value}`);
+    dispatch(setProductFilter(value))
+    navigate(`/products`);
   };
 
   // MOUSE DOWN

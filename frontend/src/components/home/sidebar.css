@@ -23,12 +23,12 @@
 .category-list {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 1px;
 }
 
 .selected-category {
-  padding: 8px 12px;
-  background: #0000001f;
+  /* padding: 8px 12px; */
+  /* background: #0000001f; */
   border-radius: 6px;
   font-size: 15px;
   cursor: pointer;
@@ -36,12 +36,16 @@
   color: #1f2937;
 }
 .active-category {
+    padding: 8px 12px;
+
   background: #000 !important;
   color: #fff !important;
 }
 
 .selected-category:hover {
-  background: #000000;
+      padding: 8px 12px;
+
+  background: #6a6a6a;
   color: #fff;
 }
 

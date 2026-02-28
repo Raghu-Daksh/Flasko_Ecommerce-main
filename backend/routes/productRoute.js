@@ -92,6 +92,8 @@ router.get("/search/:key", async (req, res) => {
     }
   } catch (error) {}
 });
+
+
 router.get("/filterData", async (req, res) => {
   let minRange = 0;
   try {
@@ -114,6 +116,9 @@ router.get("/filterData", async (req, res) => {
       if (searchResult.length > 0) {
         res.send(searchResult);
       }
+      else {
+      res.send("No product found");
+    }
     }
   } catch (error) {
     console.log(error);

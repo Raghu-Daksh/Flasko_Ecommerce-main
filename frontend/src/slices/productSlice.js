@@ -65,14 +65,20 @@ export const sortedProducts = createAsyncThunk('sortedProducts', async(query)=>{
 const initialState = {
     productsData:[],
     sortedProductsData:[],
-   productDetail:{},
+    productDetail:{},
     loading:false,
-    error:null
+    error:null,
+    productFilter : 'All'
 }
 
 const productSlice = createSlice({
     name:'proucts',
     initialState,
+    reducers:{
+        setProductFilter : (state, action)=>{
+            state.productFilter = action.payload
+        }
+    },
     extraReducers:(builder)=>{
         builder.addCase(fetchProducts.fulfilled, (state, action)=>{
             state.loading = false
@@ -97,4 +103,5 @@ const productSlice = createSlice({
     }
 })
 
+export const {setProductFilter} = productSlice.actions
 export default productSlice.reducer
