@@ -5,24 +5,34 @@ import { loginUserAuth } from "../../slices/authSlice";
 import { useDispatch } from "react-redux";
 
 const LoginForm = () => {
-  const navigate = useNavigate()
-  const dispatch = useDispatch()
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [userDetail, setUserDetail] = useState({
     email: "",
     password: "",
   });
+  const [validationError, setValidationError] = useState("");
+  const [authError, setAuthError] = useState("");
 
   const onValueChange = (e) => {
     setUserDetail({ ...userDetail, [e.target.name]: e.target.value });
   };
 
   const submitLoginForm = async () => {
-    try {
+    if (!userDetail.email.trim() || !userDetail.password.trim()) {
+      setValidationError("Email and password are required");
+      setAuthError("");
+      return;
+    }
 
-      const response = await dispatch(loginUserAuth(userDetail)).unwrap()
-      navigate('/')
+    setValidationError("");
+
+    try {
+      await dispatch(loginUserAuth(userDetail)).unwrap();
+      setAuthError("");
+      navigate("/");
     } catch (err) {
-      console.log(err);
+      setAuthError(typeof err === "string" ? err : "Invalid credentials");
     }
   };
 
@@ -55,9 +65,15 @@ const LoginForm = () => {
             />
           </div>
 
+          {(validationError || authError) && (
+            <p role="alert" className="error">
+              {validationError || authError}
+            </p>
+          )}
+
           <p className="terms">
-            By continuing, you agree to Flasko’s{" "}
-            <span>Terms of Use</span> & <span>Privacy Policy</span>
+            By continuing, you agree to Flasko's <span>Terms of Use</span> &{" "}
+            <span>Privacy Policy</span>
           </p>
 
           <button className="auth-btn" onClick={submitLoginForm}>
@@ -70,8 +86,7 @@ const LoginForm = () => {
         </div>
 
         <p className="auth-footer">
-          New to Flasko?{" "}
-          <Link to="/register">Create an account</Link>
+          New to Flasko? <Link to="/register">Create an account</Link>
         </p>
       </div>
     </div>
