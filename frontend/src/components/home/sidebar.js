@@ -7,7 +7,7 @@ import { fetchProducts, filteredProducts, setProductFilter } from "../../slices/
 const SideBar = () => {
   const dispatch = useDispatch();
 
-  const { productsData:products,productFilter } = useSelector((state) => state.products);
+  const { productsData:products, productFilter } = useSelector((state) => state.products);
 
   let companyArr = ["All"];
   Array.isArray(products) && products.map((item) => {   
@@ -39,16 +39,17 @@ const SideBar = () => {
           ))}
         </div>
       </div>
-      <div className="filter select-by-company">
+      {/* <div className="filter select-by-company">
         <h5>Company</h5>
         <div className="category-company-list">
+          
           <select onClick={(e) => dispatch(setProductFilter((e.target.value)))}>
             {companyArr?.slice(0, 10).map((item, key) => (
               <option>{item}</option>
             ))}
           </select>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };
