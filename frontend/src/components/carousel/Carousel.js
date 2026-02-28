@@ -49,7 +49,7 @@ const CarouselSlide = ()=>{
                     src="https://images.pexels.com/photos/963486/pexels-photo-963486.jpeg?_gl=1*16tj77t*_ga*MTQzMzEyMTkwMS4xNzY2MzMyMjEz*_ga_8JE65Q40S6*czE3NjYzMzIyMTMkbzEkZzEkdDE3NjYzMzIyOTIkajQ2JGwwJGgw"
                     alt="banner-1"
                     className='carousel-img'
-                    fetchPriority="high"
+                    fetchpriority="high"
                    style={{ 
                       width: "100%", 
                       height: "30vh", 

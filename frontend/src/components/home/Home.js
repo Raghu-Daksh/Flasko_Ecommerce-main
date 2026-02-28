@@ -10,6 +10,7 @@ import { fetchProducts } from "../../slices/productSlice";
 const Home = () => {
   const dispatch = useDispatch();
   const { productsData } = useSelector((state) => state.products);
+console.log(productsData);
 
   useEffect(() => {
     dispatch(fetchProducts());

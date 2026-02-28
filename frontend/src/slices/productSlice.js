@@ -6,6 +6,7 @@ import { backendApi } from "../utils/paytm";
 export const fetchProducts = createAsyncThunk('products', async ()=>{
     try {
         const fetchData = await axios.get(`${backendApi}/api/products`)
+
         return fetchData.data        
     } catch (error) {
             console.log(error);            
@@ -82,23 +83,23 @@ const productSlice = createSlice({
     extraReducers:(builder)=>{
         builder.addCase(fetchProducts.fulfilled, (state, action)=>{
             state.loading = false
-            state.productsData = action.payload
+            state.productsData = action.payload.data
         })
         builder.addCase(searchProducts.fulfilled, (state, action)=>{
             state.loading = false
-            state.productsData = action.payload
+            state.productsData = action.payload.data
         })
         builder.addCase(filteredProducts.fulfilled, (state, action)=>{
             state.loading = false
-            state.productsData = action.payload
+            state.productsData = action.payload.data
         })
         builder.addCase(sortedProducts.fulfilled, (state, action)=>{
             state.loading = false
-            state.sortedProductsData = action.payload
+            state.sortedProductsData = action.payload.data
         })
         builder.addCase(productsDetails.fulfilled, (state, action)=>{
             state.loading = false
-            state.productDetail = action.payload
+            state.productDetail = action.payload.data
         })
     }
 })

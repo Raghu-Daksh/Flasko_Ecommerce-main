@@ -107,7 +107,7 @@ const Category = () => {
                 alt={item.text} 
                 // Image drag prevent karein taaki slider drag ho, image nahi
                 draggable={false} 
-                fetchPriority="high"
+                fetchpriority="high"
             />
             <p>{item.text}</p>
           </div>
