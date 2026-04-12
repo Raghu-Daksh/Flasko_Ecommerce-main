@@ -3,17 +3,19 @@ import axios from "axios";
 import { backendApi } from "../utils/paytm";
 
 
-export const fetchProducts = createAsyncThunk('products', async ()=>{
+export const fetchProducts = createAsyncThunk('products', async(_,  { rejectWithValue })=>{
     try {
         const fetchData = await axios.get(`${backendApi}/api/products`)
-
+        console.log(fetchData);
+        
         return fetchData.data        
     } catch (error) {
-            console.log(error);            
+            console.log(error);  
+            return rejectWithValue(error.response.data)          
     }
 })
 
-export const searchProducts = createAsyncThunk('searchProducts', async(query)=>{
+export const searchProducts = createAsyncThunk('searchProducts', async(query, { rejectWithValue })=>{
     try {
         console.log(query);
         
@@ -23,10 +25,10 @@ export const searchProducts = createAsyncThunk('searchProducts', async(query)=>{
         
     } catch (error) {
         console.log(error);
-        
+        return rejectWithValue(error.response.data);
     }
 })
-export const productsDetails = createAsyncThunk('productsDetails', async(_id)=>{
+export const productsDetails = createAsyncThunk('productsDetails', async(_id, { rejectWithValue })=>{
     try {
         console.log(_id);
         
@@ -36,10 +38,10 @@ export const productsDetails = createAsyncThunk('productsDetails', async(_id)=>{
         
     } catch (error) {
         console.log(error);
-        
+        return rejectWithValue(error.response.data);
     }
 })
-export const filteredProducts = createAsyncThunk('filteredProducts', async(query)=>{
+export const filteredProducts = createAsyncThunk('filteredProducts', async(query, { rejectWithValue })=>{
     try {
         console.log(query);        
         const fetchData = await axios.get( `${backendApi}/api/products/filterData?query=${query}`)
@@ -48,10 +50,10 @@ export const filteredProducts = createAsyncThunk('filteredProducts', async(query
         
     } catch (error) {
         console.log(error);
-        
+        return rejectWithValue(error.response.data);
     }
 })
-export const sortedProducts = createAsyncThunk('sortedProducts', async(query)=>{
+export const sortedProducts = createAsyncThunk('sortedProducts', async(query, { rejectWithValue })=>{
     try {
         const fetchData = await axios.get(`${backendApi}/api/products/sortedproducts?query=${query}`)
         console.log(fetchData);
@@ -59,6 +61,7 @@ export const sortedProducts = createAsyncThunk('sortedProducts', async(query)=>{
         
     } catch (error) {
         console.log(error);
+        return rejectWithValue(error.response.data);
         
     }
 })
@@ -81,25 +84,65 @@ const productSlice = createSlice({
         }
     },
     extraReducers:(builder)=>{
-        builder.addCase(fetchProducts.fulfilled, (state, action)=>{
+        builder
+        .addCase(fetchProducts.fulfilled, (state, action)=>{
             state.loading = false
             state.productsData = action.payload.data
         })
-        builder.addCase(searchProducts.fulfilled, (state, action)=>{
+        .addCase(fetchProducts.rejected, (state, action)=>{
+            state.loading = false
+            state.error = action.payload
+        })
+        .addCase(fetchProducts.pending, (state, action)=>{
+            state.loading = true
+        })
+        
+        .addCase(searchProducts.fulfilled, (state, action)=>{
             state.loading = false
             state.productsData = action.payload.data
         })
-        builder.addCase(filteredProducts.fulfilled, (state, action)=>{
+         .addCase(searchProducts.rejected, (state, action)=>{
+            state.loading = false
+            state.error = action.payload
+        })
+        .addCase(searchProducts.pending, (state, action)=>{
+            state.loading = true
+        })
+        
+        .addCase(filteredProducts.fulfilled, (state, action)=>{
             state.loading = false
             state.productsData = action.payload.data
         })
-        builder.addCase(sortedProducts.fulfilled, (state, action)=>{
+                 .addCase(filteredProducts.rejected, (state, action)=>{
+            state.loading = false
+            state.error = action.payload
+        })
+        .addCase(filteredProducts.pending, (state, action)=>{
+            state.loading = true
+        })
+
+        .addCase(sortedProducts.fulfilled, (state, action)=>{
             state.loading = false
             state.sortedProductsData = action.payload.data
         })
-        builder.addCase(productsDetails.fulfilled, (state, action)=>{
+           .addCase(sortedProducts.rejected, (state, action)=>{
+            state.loading = false
+            state.error = action.payload
+        })
+        .addCase(sortedProducts.pending, (state, action)=>{
+            state.loading = true
+        })
+
+        .addCase(productsDetails.fulfilled, (state, action)=>{
             state.loading = false
             state.productDetail = action.payload.data
+        })
+           .addCase(productsDetails.rejected, (state, action)=>{
+            state.loading = false
+            state.error = action.payload
+        })
+        .addCase(productsDetails.pending, (state, action)=>{
+            state.loading = true
         })
     }
 })

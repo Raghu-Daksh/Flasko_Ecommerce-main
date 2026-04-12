@@ -37,15 +37,22 @@ const getAllProducts = async () => {
 const searchProducts = async (key) => {
   // 'i' flag = case-insensitive. Add text index on schema for production scale.
   const regex   = new RegExp(key, "i");
-  const results = await Product.find({
-    $or: [
-      { brand:    regex },
-      { category: regex },
-      { title:    regex },
-    ],
-  })
-    .select(BASE_PROJECTION)
-    .lean();
+  // const results = await Product.find({
+  //   $or: [
+  //     { brand:    regex },
+  //     { category: regex },
+  //     { title:    regex },
+  //   ],
+  // })
+  //   .select(BASE_PROJECTION)
+  //   .lean();
+      const results = await Product.find(
+      { $text: { $search: key } },
+      { score: { $meta: "textScore" } }        // relevance scoring
+    )
+      .sort({ score: { $meta: "textScore" } }) // best matches first
+      .select(BASE_PROJECTION)
+      .lean();
 
   if (!results.length) throw new NotFoundError("No products found for that search", 404);
   return results;

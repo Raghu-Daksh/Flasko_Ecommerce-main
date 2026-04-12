@@ -9,6 +9,7 @@ const {
 } = require("../validations/product.validation.js");
 const { validate, validateQuery } = require("../middleware/validate.js");
 
+
 // ── Write Operations ──────────────────────────────────────────────────────────
 router.post("/",         validate(addProductSchema),      controller.createProduct);
 router.post("/add-many", validate(addManyProductsSchema), controller.createManyProducts);
